@@ -1,0 +1,120 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5vh;
+}
+
+.title {
+  font-size: clamp(2rem, 8vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.componentsTitle {
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+.components {
+  list-style-type: disc;
+  margin-top: 0.75rem;
+}
+
+.components a:hover {
+  text-decoration: underline;
+}
+
+.ctaButton {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #0052FF;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ctaButton:hover {
+  background-color: #0041CC;
+}
+
+.ctaButton:disabled {
+  background-color: #6B7280;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 1rem;
+  color: #EF4444;
+  font-size: 0.9rem;
+}
+
+.result {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.subname {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0052FF;
+  margin-bottom: 0.5rem;
+}
+
+.address {
+  font-size: 0.9rem;
+  font-family: monospace;
+  color: #6B7280;
+  word-break: break-all;
+}
+
+.debug {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #F3F4F6;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.privateKeyBox {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #FEF3C7;
+  border: 2px solid #F59E0B;
+  border-radius: 8px;
+}
+
+.privateKeyLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #92400E;
+  margin-bottom: 0.5rem;
+}
+
+.privateKey {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #78350F;
+  word-break: break-all;
+  background-color: #FFFBEB;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
