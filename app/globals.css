@@ -1,13 +1,16 @@
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #000000;
+    --foreground: #ffffff;
+    --kantina-blue: #0066FF;
+    --kantina-green: #00FF88;
+    --kantina-orange: #FF6B35;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
+      --background: #000000;
+      --foreground: #ffffff;
     }
   }
 

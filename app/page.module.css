@@ -1,7 +1,8 @@
 .container {
-  display: grid;
-  grid-template-rows: auto 1fr;
   min-height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  padding: 1rem;
 }
 
 .headerWrapper {
@@ -10,12 +11,254 @@
   padding: 1rem;
 }
 
-.content {
+/* Landing page for new users */
+.landingContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 5vh;
+  min-height: 100vh;
+  gap: 3rem;
+}
+
+.logo {
+  margin-bottom: 2rem;
+}
+
+.helloButton {
+  padding: 1rem 2.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #FF8C42;
+  color: #000000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 260px;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.helloButton:hover {
+  background: #FF8555;
+  transform: translateY(-2px);
+}
+
+.helloButton:disabled {
+  background: #6B7280;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Home page for returning users */
+.homeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.logoSmall {
+  width: 80px;
+  height: auto;
+}
+
+.getRewzButton {
+  padding: 0.7rem 1.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #00FF88;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: capitalize;
+}
+
+.getRewzButton:hover {
+  background: #00DD77;
+  transform: translateY(-2px);
+}
+
+.getRewzButtonSmall {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #00FF88;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.homeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.actionButton {
+  padding: 1.3rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #0066FF;
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 280px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.actionButton:hover {
+  background: #0055DD;
+  transform: translateY(-2px);
+}
+
+/* Modal styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: #000000;
+  border: 2px solid #333;
+  border-radius: 24px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.modalHeaderCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.comingSoonBox {
+  background: #00FF88;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.comingSoonBox p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.emailInput:focus {
+  outline: none;
+  background: #ffffff;
+}
+
+.emailInput::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sendButton {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #0066FF;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.featuresBox {
+  background: #0066FF;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.featuresTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.feature {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+  padding-left: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: block;
+}
+
+.feature:hover {
+  color: #00FF88;
+  transform: translateX(4px);
+}
+
+.backButton {
+  margin-top: 1.5rem;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .title {

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import styles from "./chat.module.css";
+import Image from "next/image";
 
 const BACKEND_URL = "/api/xmtp";
 
@@ -10,7 +11,6 @@ export default function Chat() {
   const { setMiniAppReady, isMiniAppReady } = useMiniKit();
   const { address: connectedAddress } = useAccount();
 
-  const [smartWalletAddress] = useState("0x275332761f825AbDcB0973d155E3F7D1e6503908"); // testname.kantina.base.eth
   const [messages, setMessages] = useState<any[]>([]);
   const [messageInput, setMessageInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,14 +31,14 @@ export default function Chat() {
 
   // Poll for new messages every 3 seconds when backend is ready
   useEffect(() => {
-    if (!backendReady || !smartWalletAddress) return;
+    if (!backendReady || !connectedAddress) return;
 
     const interval = setInterval(async () => {
       await loadMessages();
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [backendReady, smartWalletAddress]);
+  }, [backendReady, connectedAddress]);
 
   const checkBackendHealth = async () => {
     try {
@@ -104,29 +104,34 @@ export default function Chat() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Kantina Chat</h1>
-
-      <div className={styles.info}>
-        <p>Your Wallet: {connectedAddress}</p>
-        <p>Kantina XMTP: {backendAddress}</p>
-        <p>Status: {backendReady ? "Connected" : "Connecting..."}</p>
+      <div className={styles.header}>
+        <Image
+          src="/kantina-logo.png"
+          alt="Kantina"
+          width={60}
+          height={60}
+        />
       </div>
 
       {!backendReady ? (
-        <div className={styles.buttonContainer}>
-          <p>Connecting to XMTP backend...</p>
+        <div className={styles.connectingBox}>
+          <p>Connecting to XMTP...</p>
           <button
-            className={styles.initButton}
+            className={styles.retryButton}
             onClick={checkBackendHealth}
           >
-            Retry Connection
+            Retry
           </button>
         </div>
       ) : (
-        <div className={styles.chatContainer}>
+        <div className={styles.chatBox}>
+          <div className={styles.chatHeader}>
+            <span>ETH Rome Chat</span>
+          </div>
+
           <div className={styles.messages}>
             {messages.length === 0 ? (
-              <p className={styles.emptyState}>No messages yet. Send a message to start!</p>
+              <p className={styles.emptyState}>No messages yet...</p>
             ) : (
               messages.map((msg, i) => (
                 <div
@@ -135,18 +140,13 @@ export default function Chat() {
                     ? styles.messageReceived
                     : styles.messageSent}
                 >
-                  <div className={styles.messageContent}>{msg.content}</div>
-                  <div className={styles.messageFrom}>
-                    {msg.senderAddress?.toLowerCase() === backendAddress?.toLowerCase()
-                      ? "Kantina"
-                      : "You"}
-                  </div>
+                  {msg.content}
                 </div>
               ))
             )}
           </div>
 
-          <div className={styles.inputContainer}>
+          <div className={styles.inputArea}>
             <input
               type="text"
               value={messageInput}
@@ -160,9 +160,13 @@ export default function Chat() {
               className={styles.sendButton}
               disabled={!messageInput.trim() || loading}
             >
-              {loading ? "Sending..." : "Send"}
+              {loading ? "..." : "Send"}
             </button>
           </div>
+
+          <a href="/" className={styles.backButton}>
+            ← Back
+          </a>
         </div>
       )}
 
