@@ -117,6 +117,14 @@ export default function Home() {
       <div className={styles.content}>
         <h1 className={styles.title}>Welcome to kantina</h1>
 
+        <a href="/chat" className={styles.chatLink}>
+          Go to Chat →
+        </a>
+
+        {result?.isSmartWallet && (
+          <div className={styles.successNote}>Smart wallet created! Try the chat above.</div>
+        )}
+
         {context?.user && (
           <div className={styles.debug}>
             <p>Debug: {JSON.stringify(context.user)}</p>

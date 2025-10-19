@@ -174,3 +174,26 @@
   color: #065F46;
   font-weight: 500;
 }
+
+.chatLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #8B5CF6;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.chatLink:hover {
+  background-color: #7C3AED;
+}
+
+.successNote {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #059669;
+  font-weight: 500;
+}

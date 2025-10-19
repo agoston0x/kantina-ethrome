@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# XMTP Database files (contain conversation data)
+*.db3
+*.db3-shm
+*.db3-wal
+*.sqlcipher_salt
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
