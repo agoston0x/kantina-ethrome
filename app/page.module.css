@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  background: #000000;
+  background: #1a1a1a;
   color: #ffffff;
   padding: 1rem;
 }
@@ -443,8 +443,12 @@
 
 /* Fade animations for landing page */
 .fadeIn {
+  animation: fadeIn 0.6s ease-in-out forwards;
+  opacity: 0;
+}
+
+.visible {
   opacity: 1;
-  animation: fadeIn 0.6s ease-in-out;
 }
 
 .fadeOut {
@@ -463,7 +467,7 @@
 
 /* Pulse animation for text changes */
 .pulse {
-  animation: pulse 0.8s ease-in-out;
+  animation: pulse 1.2s ease-in-out;
 }
 
 @keyframes pulse {
@@ -471,7 +475,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.03);
+    transform: scale(1.02);
   }
   100% {
     transform: scale(1);

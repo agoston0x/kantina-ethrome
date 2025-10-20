@@ -8,6 +8,7 @@ export default function LandingPage() {
   const { isMiniAppReady, setMiniAppReady } = useMiniKit();
   const [isInBaseApp, setIsInBaseApp] = useState(false);
   const [showBox, setShowBox] = useState(false);
+  const [initialFadeComplete, setInitialFadeComplete] = useState(false);
   const [showHello, setShowHello] = useState(true);
   const [pulse, setPulse] = useState(false);
 
@@ -26,6 +27,8 @@ export default function LandingPage() {
     // Initial delay: wait 1 second before showing the box
     const initialTimeout = setTimeout(() => {
       setShowBox(true);
+      // Mark initial fade as complete after fade animation finishes
+      setTimeout(() => setInitialFadeComplete(true), 600);
     }, 1000);
 
     return () => clearTimeout(initialTimeout);
@@ -36,7 +39,7 @@ export default function LandingPage() {
     if (showBox) {
       const interval = setInterval(() => {
         setPulse(true);
-        setTimeout(() => setPulse(false), 800); // Pulse duration
+        setTimeout(() => setPulse(false), 1200); // Pulse duration
         setShowHello(prev => !prev);
       }, 2000);
 
@@ -49,6 +52,19 @@ export default function LandingPage() {
       return "coming soon...";
     }
     return "open in base app";
+  };
+
+  const getBoxClasses = () => {
+    const classes = [styles.helloButton];
+    if (!initialFadeComplete) {
+      classes.push(styles.fadeIn);
+    } else {
+      classes.push(styles.visible);
+    }
+    if (pulse) {
+      classes.push(styles.pulse);
+    }
+    return classes.join(' ');
   };
 
   return (
@@ -65,7 +81,7 @@ export default function LandingPage() {
         </div>
 
         {showBox && (
-          <div className={`${styles.helloButton} ${styles.fadeIn} ${pulse ? styles.pulse : ''}`}>
+          <div className={getBoxClasses()}>
             {showHello ? "hello" : getMessage()}
           </div>
         )}
