@@ -7,8 +7,9 @@ import styles from "./page.module.css";
 export default function LandingPage() {
   const { isMiniAppReady, setMiniAppReady } = useMiniKit();
   const [isInBaseApp, setIsInBaseApp] = useState(false);
+  const [showBox, setShowBox] = useState(false);
   const [showHello, setShowHello] = useState(true);
-  const [fadeIn, setFadeIn] = useState(true);
+  const [pulse, setPulse] = useState(false);
 
   useEffect(() => {
     if (!isMiniAppReady) {
@@ -22,31 +23,26 @@ export default function LandingPage() {
   }, [isMiniAppReady]);
 
   useEffect(() => {
-    // Initial sequence: show "hello" for 2 seconds, then switch to message
+    // Initial delay: wait 2 seconds before showing the box
     const initialTimeout = setTimeout(() => {
-      setFadeIn(false);
-      setTimeout(() => {
-        setShowHello(false);
-        setFadeIn(true);
-      }, 500); // Wait for fade out to complete
+      setShowBox(true);
     }, 2000);
 
     return () => clearTimeout(initialTimeout);
   }, []);
 
   useEffect(() => {
-    // After initial "hello", alternate messages every 3 seconds
-    if (!showHello) {
+    // After box appears, alternate text every 2 seconds with pulse
+    if (showBox) {
       const interval = setInterval(() => {
-        setFadeIn(false);
-        setTimeout(() => {
-          setFadeIn(true);
-        }, 500); // Wait for fade out to complete
-      }, 3000);
+        setPulse(true);
+        setTimeout(() => setPulse(false), 300); // Pulse duration
+        setShowHello(prev => !prev);
+      }, 2000);
 
       return () => clearInterval(interval);
     }
-  }, [showHello]);
+  }, [showBox]);
 
   const getMessage = () => {
     if (isInBaseApp) {
@@ -68,9 +64,11 @@ export default function LandingPage() {
           />
         </div>
 
-        <div className={`${styles.helloButton} ${fadeIn ? styles.fadeIn : styles.fadeOut}`}>
-          {showHello ? "hello" : getMessage()}
-        </div>
+        {showBox && (
+          <div className={`${styles.helloButton} ${styles.fadeIn} ${pulse ? styles.pulse : ''}`}>
+            {showHello ? "hello" : getMessage()}
+          </div>
+        )}
       </div>
     </div>
   );
