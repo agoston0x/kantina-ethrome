@@ -440,3 +440,14 @@
   color: #059669;
   font-weight: 500;
 }
+
+/* Fade animations for landing page */
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
