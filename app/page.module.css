@@ -463,7 +463,7 @@
 
 /* Pulse animation for text changes */
 .pulse {
-  animation: pulse 0.3s ease-in-out;
+  animation: pulse 0.8s ease-in-out;
 }
 
 @keyframes pulse {
@@ -471,7 +471,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
   100% {
     transform: scale(1);

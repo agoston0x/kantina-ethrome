@@ -23,10 +23,10 @@ export default function LandingPage() {
   }, [isMiniAppReady]);
 
   useEffect(() => {
-    // Initial delay: wait 2 seconds before showing the box
+    // Initial delay: wait 1 second before showing the box
     const initialTimeout = setTimeout(() => {
       setShowBox(true);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(initialTimeout);
   }, []);
@@ -36,7 +36,7 @@ export default function LandingPage() {
     if (showBox) {
       const interval = setInterval(() => {
         setPulse(true);
-        setTimeout(() => setPulse(false), 300); // Pulse duration
+        setTimeout(() => setPulse(false), 800); // Pulse duration
         setShowHello(prev => !prev);
       }, 2000);
 
