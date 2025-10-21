@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kantina - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #180807;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ========== STAR EFFECTS (for easy removal) ========== */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: starGlow 3s ease-in-out infinite;
+            z-index: 15;
+        }
+
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff);
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.4);
+            opacity: 0;
+            z-index: 20;
+        }
+
+        @keyframes starGlow {
+            0%, 100% {
+                opacity: 0.3;
+                box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                opacity: 0.8;
+                box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        @keyframes shootTL {
+            0% { transform: translateX(0) translateY(0) rotate(var(--angle)); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(var(--x)) translateY(var(--y)) rotate(var(--angle)); opacity: 0; }
+        }
+        /* ========== END STAR EFFECTS ========== */
+
+        .logo {
+            margin-bottom: 6rem;
+            animation: fadeIn 1s ease-in-out;
+            z-index: 10;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .coming-soon {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-transform: lowercase;
+            opacity: 0;
+            animation: neonFlicker 1.5s ease-in-out 1s 1 forwards, glow 2s ease-in-out 2.5s infinite;
+            z-index: 30;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes neonFlicker {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            5% {
+                opacity: 0.2;
+                text-shadow:
+                    0 0 10px rgba(255, 140, 66, 0.3),
+                    0 0 20px rgba(255, 140, 66, 0.2);
+            }
+            10% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            15% {
+                opacity: 0.8;
+                text-shadow:
+                    0 0 20px rgba(255, 140, 66, 0.6),
+                    0 0 40px rgba(255, 140, 66, 0.4);
+            }
+            20% {
+                opacity: 0.2;
+                text-shadow:
+                    0 0 10px rgba(255, 140, 66, 0.2);
+            }
+            25% {
+                opacity: 1;
+                text-shadow:
+                    0 0 20px rgba(255, 140, 66, 0.7),
+                    0 0 40px rgba(255, 140, 66, 0.5);
+            }
+            30% {
+                opacity: 0.3;
+                text-shadow:
+                    0 0 10px rgba(255, 140, 66, 0.3);
+            }
+            35% {
+                opacity: 1;
+                text-shadow:
+                    0 0 20px rgba(255, 140, 66, 0.7),
+                    0 0 40px rgba(255, 140, 66, 0.5);
+            }
+            40%, 100% {
+                opacity: 1;
+                text-shadow:
+                    0 0 20px rgba(255, 140, 66, 0.7),
+                    0 0 40px rgba(255, 140, 66, 0.5);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow:
+                    0 0 10px rgba(255, 140, 66, 0.5),
+                    0 0 20px rgba(255, 140, 66, 0.3),
+                    0 0 30px rgba(255, 140, 66, 0.2);
+                opacity: 0.9;
+            }
+            50% {
+                text-shadow:
+                    0 0 30px rgba(255, 140, 66, 1),
+                    0 0 60px rgba(255, 140, 66, 0.8),
+                    0 0 90px rgba(255, 140, 66, 0.6),
+                    0 0 120px rgba(255, 140, 66, 0.4);
+                opacity: 1;
+            }
+            55% {
+                opacity: 0.85;
+            }
+            60% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .logo {
+                margin-bottom: 5rem;
+            }
+
+            .logo img {
+                width: 150px;
+            }
+
+            .coming-soon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STAR EFFECTS (for easy removal) -->
+    <div class="stars" id="stars"></div>
+
+    <div class="logo">
+        <img src="public/kantina-logo.png" alt="Kantina">
+    </div>
+    <div class="coming-soon">coming soon</div>
+
+    <script>
+        // ========== STAR EFFECTS (for easy removal) ==========
+        const starsContainer = document.getElementById('stars');
+
+        // Create static stars
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = (Math.random() * 2 + 1) + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Create shooting stars periodically
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+
+            // Random position in top 40% of screen (to avoid logo area)
+            shootingStar.style.left = Math.random() * 80 + '%';
+            shootingStar.style.top = Math.random() * 40 + '%';
+            shootingStar.style.width = (Math.random() * 100 + 50) + 'px';
+
+            // Random angle between 20-70 degrees (roughly diagonal directions)
+            const angle = Math.random() * 50 + 20;
+            const distance = 400;
+
+            // Calculate x and y movement based on angle
+            // Positive x = right, positive y = down
+            const radians = angle * Math.PI / 180;
+            const x = Math.cos(radians) * distance;
+            const y = Math.sin(radians) * distance;
+
+            // Set CSS custom properties and animation
+            shootingStar.style.setProperty('--angle', angle + 'deg');
+            shootingStar.style.setProperty('--x', x + 'px');
+            shootingStar.style.setProperty('--y', y + 'px');
+            shootingStar.style.animation = 'shootTL 1.5s linear forwards';
+
+            starsContainer.appendChild(shootingStar);
+
+            setTimeout(() => {
+                shootingStar.remove();
+            }, 1500);
+        }
+
+        // Spawn shooting star every 15-25 seconds
+        function scheduleShootingStar() {
+            createShootingStar();
+            setTimeout(scheduleShootingStar, Math.random() * 10000 + 15000);
+        }
+
+        setTimeout(scheduleShootingStar, 3000);
+        // ========== END STAR EFFECTS ==========
+    </script>
+</body>
+</html>
